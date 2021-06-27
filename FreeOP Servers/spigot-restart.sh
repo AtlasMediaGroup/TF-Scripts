@@ -30,6 +30,6 @@ if screen -list | grep -q "$SCREEN_NAME";
 then
     echo "ERROR - We have been unable to re-start the server... Please execute this manually"
 else
-    screen -dmS $SCREEN_NAME java -Xms$JVM_HEAP -Xmx$JVM_HEAP -XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -jar $PAPER_JAR_NAME
+    screen -dmS $SCREEN_NAME java -Xms$JVM_HEAP -Xmx$JVM_HEAP $JVM_LAUNCH_OPTS -jar $PAPER_JAR_NAME
     echo "Server Started"
 fi

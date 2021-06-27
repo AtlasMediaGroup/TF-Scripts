@@ -11,7 +11,7 @@ else
     then
         echo "ERROR - There is an instance of the server already running. Make sure it is killed first and try again"
     else
-        screen -dmS $SCREEN_NAME java -Xms$JVM_HEAP -Xmx$JVM_HEAP -XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -jar $PAPER_JAR_NAME
+        screen -dmS $SCREEN_NAME java -Xms$JVM_HEAP -Xmx$JVM_HEAP $JVM_LAUNCH_OPTS -jar $PAPER_JAR_NAME
         echo "Server Started"
     fi
 fi
