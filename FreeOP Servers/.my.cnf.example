@@ -1,0 +1,7 @@
+[mysqldump]
+user=database-username
+password="MySuperSecurePassword!"
+
+[mysql]
+user=database-username
+password="MySuperSecurePassword!"

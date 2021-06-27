@@ -48,8 +48,11 @@ else
             then
                 mysqldump -h $DB_HOSTNAME $CO_DATABASE --no-tablespaces > $CO_DATABASE-$TIMESTAMP.sql
                 mv /home/tfserver/$CO_DATABASE-$TIMESTAMP.sql /home/tfserver/archives/$CO_DATABASE-$TIMESTAMP.sql
-            else
-                echo "Big yay, no database shite"
+                echo "CoreProtect Database downloaded to /home/tfserver/archives/$CO_DATABASE-$TIMESTAMP.sql"
+                echo "SET FOREIGN_KEY_CHECKS = 0;" > ./temp.sql
+                mysqldump --add-drop-table --no-data --no-tablespaces -h $DB_HOSTNAME $CO_DATABASE | grep 'DROP TABLE' >> ./temp.sql
+                echo "SET FOREIGN_KEY_CHECKS = 1;" >> ./temp.sql
+                mysql $CO_DATABASE -h $DB_HOSTNAME < ./temp.sql
             fi
 
             # Need to add something around handling the MySQL shit here

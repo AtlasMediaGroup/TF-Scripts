@@ -15,6 +15,5 @@ else
     else
         screen -dmS $SCREEN_NAME java -Xms$JVM_HEAP -Xmx$JVM_HEAP $JVM_LAUNCH_OPTS -jar $PAPER_JAR_NAME
         echo "Server Started"
-        exit 0
     fi
 fi

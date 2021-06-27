@@ -25,10 +25,8 @@ else
             exit 1
         else
             echo "Server has been shut down succesfully."
-            exit 0
         fi
     else
         echo "$SARCASTIC_MESSAGE"
-        exit 0
     fi
 fi
