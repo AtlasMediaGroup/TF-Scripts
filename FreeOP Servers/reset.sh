@@ -44,6 +44,14 @@ else
                 fi 
             done
             
+            if ls /home/tfserver/plugins/CoreProtect-* 1> /dev/null 2>&1;
+            then
+                mysqldump -h $DB_HOSTNAME $CO_DATABASE --no-tablespaces > $CO_DATABASE-$TIMESTAMP.sql
+                mv /home/tfserver/$CO_DATABASE-$TIMESTAMP.sql /home/tfserver/archives/$CO_DATABASE-$TIMESTAMP.sql
+            else
+                echo "Big yay, no database shite"
+            fi
+
             # Need to add something around handling the MySQL shit here
             
             echo "Something Something restore the template to be the world, something something I'll get around to this..."
