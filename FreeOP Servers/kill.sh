@@ -1,13 +1,17 @@
 #!
-if screen -list | grep -q "TotalFreedom";
+
+#Pull in the .env file for variables.
+source .env.sh
+
+if screen -list | grep -q "$SCREEN_NAME";
 then
-    screen -X -S "TotalFreedom" stuff "^C^C^C^C^C^C^C^C^C^C^C^C^C"
+    screen -X -S "$SCREEN_NAME" stuff "^C^C^C^C^C^C^C^C^C^C^C^C^C"
     sleep 5
 else
-    echo "The server is not running... Try starting it <3"
+    echo "$SARCASTIC_MESSAGE"
 fi
 
-if screen -list | grep -q "TotalFreedom";
+if screen -list | grep -q "$SCREEN_NAME";
 then
     fuser -k 25565/tcp
     rm -f /home/tfserver/world/session.lock
@@ -20,7 +24,7 @@ then
     sleep 5
 fi
 
-if screen -list | grep -q "TotalFreedom";
+if screen -list | grep -q "$SCREEN_NAME";
 then
     echo "Kill Command Failed. Please try again"
 else
