@@ -47,6 +47,7 @@ else
                 fi 
             done
             
+            # Archives out the CoreProtect Database for history. 
             if ls /home/tfserver/plugins/CoreProtect-* 1> /dev/null 2>&1;
             then
                 mysqldump -h $DB_HOSTNAME $CO_DATABASE --no-tablespaces > $CO_DATABASE-$TIMESTAMP.sql
@@ -56,6 +57,13 @@ else
                 mysqldump --add-drop-table --no-data --no-tablespaces -h $DB_HOSTNAME $CO_DATABASE | grep 'DROP TABLE' >> ./temp.sql
                 echo "SET FOREIGN_KEY_CHECKS = 1;" >> ./temp.sql
                 mysql $CO_DATABASE -h $DB_HOSTNAME < ./temp.sql
+            fi
+
+            # Archives out the Essentials spawnpoints for history. 
+            if ls /home/tfserver/plugins/Essentials-* 1> /dev/null 2>&1;
+            then
+                mv /home/tfserver/plugins/Essentials/spawn.yml /home/tfserver/archives/Essentials-spawn.yml-$TIMESTAMP.yml
+                echo "Essentials Spawn Configuration downloaded to /home/tfserver/archives/$CO_DATABASE-$TIMESTAMP.sql"
             fi
 
             cp -R /home/tfserver/template/$1 /home/tfserver/world
