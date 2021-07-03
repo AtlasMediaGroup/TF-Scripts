@@ -16,4 +16,4 @@ RESET_FILE="/home/tfserver/.resetting"
 #JVM_LAUNCH_OPTS="-XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10"
 
 #Java 16 Launch Opts
-JVM_LAUNCH_OPTS="--illegal-access=permit -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10"
+JVM_LAUNCH_OPTS="--illegal-access=permit -XX:+UseZGC -XX:+DisableExplicitGC"
