@@ -24,11 +24,14 @@ else
         fi
 
         if [ -d "/home/tfserver/template/$1" ] 
-        then
-            echo "The folder exists so this would run."  
+        then  
             if screen -list | grep -q "$SCREEN_NAME"; 
             then      
                 source /home/tfserver/stop.sh 
+                if screen -list | grep -q "$SCREEN_NAME"; 
+                then      
+                    source /home/tfserver/stop.sh 
+                fi
             fi
             # Write the reset file to disk so we make sure if someone is stupid and tries to now re-start the server, the world doesn't fucking end... 
             touch $RESET_FILE      
@@ -55,10 +58,9 @@ else
                 mysql $CO_DATABASE -h $DB_HOSTNAME < ./temp.sql
             fi
 
-            # Need to add something around handling the MySQL shit here
-            
-            echo "Something Something restore the template to be the world, something something I'll get around to this..."
-            sleep 20
+            cp -R /home/tfserver/template/$1 /home/tfserver/world
+
+            # Remove that lock file now that we actually want to start the server up. 
             rm -f $RESET_FILE
             source /home/tfserver/start.sh      
         else
