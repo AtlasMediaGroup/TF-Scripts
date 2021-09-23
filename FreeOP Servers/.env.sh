@@ -19,4 +19,7 @@ RESET_FILE="/home/tfserver/.resetting"
 #JVM_LAUNCH_OPTS="--illegal-access=permit -XX:+UseZGC -XX:+DisableExplicitGC"
 
 #Java 17 Launch Opts
-JVM_LAUNCH_OPTS="-XX:+UseZGC -XX:+DisableExplicitGC"
+#JVM_LAUNCH_OPTS="-XX:+UseZGC -XX:+DisableExplicitGC"
+
+#Java 17 Launch Opts - Temporary due to Paper bug and OpenVZ Issues
+JVM_LAUNCH_OPTS="-XX:+DisableExplicitGC -DPaper.IgnoreJavaVersion=true"
